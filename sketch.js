@@ -5,9 +5,13 @@ let posY = 0;
 let velX = 2;
 let velY = 2;
 
+let osc, playing, freq, amp;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
+
+  osc = new p5.Oscillator('cuadrado');
 }
 
 function draw() {
@@ -53,4 +57,14 @@ function draw() {
   stroke(70, 125, 35, 50);
   strokeWeight(5);
   rect(posX4, posY4, tam4, tam4);
+
+///// Sonido//////
+osc.start();
+freq = constrain(map(posX4 + 400), 0, 1, 0, windowWidth);
+amp = 0, 5;
+
+osc.freq(freq, 0.1);
+  osc.amp(amp, 0, posX4);
+  
 }
+
